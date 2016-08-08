@@ -22,4 +22,7 @@ $dbDirectory = realpath(dirname(__FILE__));
 $dbPath = $dbDirectory."/db.class.php";
 
 require_once ($dbPath);
-require_once ($dbDirectory."/classes/class.validation.php");
+require_once ($dbDirectory."/classes/validation.class.php");
+
+//set encryption key
+$encryption_key="154072a750541f54250de83a125003a4";
