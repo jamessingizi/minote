@@ -40,4 +40,40 @@ class Notes {
 		return $results;
 		
 	}
+	/**
+	 * get the specified note using its id
+	 * @return mixed
+	 */
+	public function getNoteById() {
+	
+		$dbInstance = MiNoteDB::getInstance();
+		$sqlCon = $dbInstance->getConnection();
+	
+		$id = $sqlCon->escape_string($this->id);
+	
+		$query = "SELECT * FROM notes where id = '$id'";
+	
+		$result = $sqlCon->query($query);
+		
+		return $result->fetch_assoc();
+	
+	}
+	/**
+	 * deletes a note specified by id
+	 * @return boolean
+	 */
+	public function deleteNote() {
+	
+		$dbInstance = MiNoteDB::getInstance();
+		$sqlCon = $dbInstance->getConnection();
+	
+		$id = $sqlCon->escape_string($this->id);
+	
+		$query = "DELETE FROM notes where id = '$id'";
+	
+		$result = $sqlCon->query($query);
+
+		return $result;
+	
+	}
 }

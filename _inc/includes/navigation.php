@@ -6,7 +6,7 @@
 
             <!--Site Logo-->
             <div class="logo" data-sticky-logo="img/logo-white.png" data-normal-logo="img/logo.png">
-                <a href="index.html">
+                <a href="index.php">
                     <img alt="Venue" src="img/logo.png" data-logo-height="35">
                 </a>
             </div>

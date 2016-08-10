@@ -1,5 +1,5 @@
 ﻿<?php
-
+	$page_title = "miNote | Home";
     require_once '_inc/includes/page_head.php';
     require_once '_inc/includes/account_modals.php';
 
@@ -543,7 +543,7 @@
 
             <div class="copyright">
                 <div class="container">
-                    <p>© Copyright 2014 by Venue. All Rights Reserved.</p>
+                    <p>© Copyright <?php echo date("Y"); ?>  by Elegant Code. All Rights Reserved.</p>
                     <nav class="footer-menu std-menu">
                         <ul class="menu">
                             <li><a href="#">About Us</a></li>

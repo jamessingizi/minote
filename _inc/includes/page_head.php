@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>miNote | home</title>
+    <title><?php echo $page_title; ?></title>
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="Venue - Responsive HTML5 Template">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

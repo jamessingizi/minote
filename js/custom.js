@@ -118,5 +118,134 @@ $(document).ready(function(){
         });
         
 	});
+	
+	//app config and operations code
+	
+	//detect if text in the note text area has been changed
+	$('#note-display-area').keydown(function(){
+		console.log("key pressed");
+		alert("Key Pressed");
+	});
+	
+	//note listing click detect
+	$('.note-listing').click(function(e){
+		
+		e.preventDefault();
+		var noteId = $(this).attr('data-note-id');
+		
+		$('#btn-save').addClass("hide");
+		
+		$.ajax({
+
+            url: 'api/getnote.php?note_id='+noteId,
+            beforeSend: function(){
+               //show that app is fetching data in background
+            },
+            success: function(data){
+               //populate textarea and enable button
+
+                var dataObj = jQuery.parseJSON(data);
+                console.log(dataObj);
+
+                if(dataObj.message === 'success'){
+                	
+                	$('#note-display-area').remove();
+                	var contentArea  = document.createElement("textarea");
+                	contentArea.setAttribute('id','note-display-area');
+                	contentArea.setAttribute('disabled','true');
+                	contentArea.setAttribute('data-note-display-id','');
+                	
+                	$('#note-display-area').css("border-color","#fff");
+                	
+                	$('#note-display-wrapper').append(contentArea);
+                	$('#note-display-area').html(dataObj.note.content);
+                	$('#btn-edit').removeAttr("disabled");
+                	$('#btn-delete').removeAttr("disabled");
+                	
+                	$('#note-display-area').attr("data-note-display-id",noteId);
+                	
+                	$('#note-meta').text(dataObj.note.notebook+" note book");
+
+                }else if(dataObj.message === 'error'){
+                	//show error message
+
+                }
+
+            }
+
+        });
+	});
+	
+	//edit note
+	$('#btn-edit').click(function(e){
+		
+		e.preventDefault();
+		$('#note-display-area').css("border-color","#3598db");
+    	$('#note-display-area').removeAttr("disabled");
+    	$('#btn-save').removeClass("hide");
+    	
+    	// set save button to visible $('#btn-delete').removeAttr("disabled");
+    
+	});
+	
+$('#btn-save').click(function(e){
+		
+		e.preventDefault();
+		$('#note-display-area').css("border-color","#fff");
+    	$('#note-display-area').attr("disabled","true");
+    	$('#btn-save').addClass("hide");
+    	
+    	// set save button to visible $('#btn-delete').removeAttr("disabled");
+    
+	});
+	
+	//delete note
+	
+	$('#btn-delete').click(function(e){
+		
+		e.preventDefault();
+		var noteId = $('#note-display-area').attr("data-note-display-id");
+		var r = confirm("Are you sure you want to delete this note");
+		if(r===true){
+			
+			$.ajax({
+
+	            url: 'api/deletenote.php?note_id='+noteId,
+	            beforeSend: function(){
+	               //show that app is fetching data in background
+	            },
+	            success: function(data){
+
+	                var dataObj = jQuery.parseJSON(data);
+	                console.log(dataObj);
+
+	                if(dataObj.message === 'success'){
+	                	//refresh notes listing and reflect changes
+	                	$('#note-display-area').css("border-color","#fff");
+	                	$('#note-display-area').text("");
+	                	$('#note-display-area').attr("disabled");
+	                	$('#note-meta').text("");
+	                	$('#btn-edit').attr("disabled");
+	                	$('#btn-delete').attr("disabled");
+	                    
+
+	                }else if(dataObj.message === 'error'){
+	                	//show error message
+	                	alert("Note could not be deleted, try again!!!");
+
+	                }
+
+	            }
+
+	        });
+			
+		}
+    	
+    	// set save button to visible $('#btn-delete').removeAttr("disabled");
+    
+	});
+	
+	
+	
 });
 

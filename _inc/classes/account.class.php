@@ -27,6 +27,24 @@ class Account{
 	}
 	
 	/**
+	 * get user account details using account id for security reasons
+	 * @return mixed
+	 */
+	public function accountDetailsById() {
+	
+		$dbInstance = MiNoteDB::getInstance();
+		$sqlCon = $dbInstance->getConnection();
+	
+		$account_id = $sqlCon->escape_string($this->account_id);
+	
+		$query = "select * from accounts where account_id = '$account_id'";
+	
+		$result = $sqlCon->query($query);
+	
+		return $result->fetch_assoc();
+	}
+	
+	/**
 	 * adds a new account for a user
 	 * @return boolean
 	 */

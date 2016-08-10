@@ -29,7 +29,7 @@ PRIMARY KEY(account_id)
 
 --////////////////////insert note //////////////////--
 insert into notes(id,title,content,created_on,modified_on,platform,synced,tags,color_tag,location,access,notebook,account_id) VALUES(
-null,"test note","this is a test note",142442443,142444351,"web",0,"test","belize hole","chipinge","private","default","james");
+null,"great app that i am developing here","the author of this app is impressed by the progress and performance so far",1470744971,1470745871,"web",0,"test","belize hole","chipinge","private","default","c6fa2427c9bdce92146d82a54c9c350d");
 
 --////////////insert new account////////////////--
 insert into accounts(account_id,email,password,created_on,firstname,lastname) VALUES(
