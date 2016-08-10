@@ -29,7 +29,8 @@ class MiNoteDB{
      * connect via constructor
      */
     public function __construct(){
-        $this->con = new mysqli('localhost', 'root', 'tafadzwa', 'minote');
+        // local settings $this->con = new mysqli('localhost', 'root', 'tafadzwa', 'minote');
+        $this->con = new mysqli('localhost', 'adminK62fAph', 'A9GaBAFvdPGW', 'minote');
         if (mysqli_connect_error()) {
             trigger_error("error for db con",E_USER_ERROR);
         }
